@@ -1,7 +1,7 @@
-#include "main.h"
+#include"main.h"
 
 /**
- * main - print 0 - 14 ten times 
+ * more_numbers - print 0 - 14 ten times 
  * you can only use _putchar three times
  *
  * Return: Always 0 (Success)
@@ -11,9 +11,9 @@ void more_numbers(void)
 {
 	int num, row, count;
 
-	for (row = 1; row <= 10; row++)
+	for (row = 1; row <= 10; ++row)
 	{
-		for (count = 0; count <= 14; count++)
+		for (count = 0; count <= 14; ++count)
 		{
 			num = count;
 			if (count > 9)
