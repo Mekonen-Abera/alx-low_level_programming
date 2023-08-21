@@ -7,7 +7,7 @@
  * passwords for the program 101-crackme
  *
  * Return: Always 0 (Success)
- * By @Mekonen-Abera
+ * Done by @Mekonen-Abera
  */
 int main(void)
 {
