@@ -4,7 +4,6 @@
  * if odd len, n = (length_of_the_string - 1) / 2
  * @str: input
  * Return: half of input
- * Done by @Mekonen-Abera
  */
 void puts_half(char *str)
 {
