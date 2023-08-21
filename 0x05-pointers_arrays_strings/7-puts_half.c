@@ -6,7 +6,6 @@
  * @str: string parameter input
  *
  * Return: Nothing
- * Done by @Mekonen-Abera
 */
 
 void puts_half(char *str)
