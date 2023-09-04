@@ -1,49 +1,41 @@
 #include <stdlib.h>
 
 /**
- * str_concat - a function that concatenates two strings.
+ * alloc_grid - a function that returns a pointer to
+ *              a 2 dimensional array of integers.
  *
- * @s1: input to string 1
- * @s2: input to string 2
+ * @width: width
+ * @height: height
  *
  * Return: NULL on faliure
 */
 
-char *str_concat(char *s1, char *s2)
+int **alloc_grid(int width, int height)
 {
-	int a = 0, b = 0;
-	int i, j;
-	char *s;
+	int **grid, i, j;
 
-	if (s1 == NULL)
-		s1 = "";
-	if (s2 == NULL)
-		s2 = "";
-
-	/*find length of str1 & str2*/
-	while (s1[a] != '\0')
-		a++;
-	while (s2[b] != '\0')
-		b++;
-
-	/*+1 for our end of string character*/
-	s = malloc((a * sizeof(char)) + ((b + 1) * sizeof(char)));
-
-	if (s == NULL)
+	if (width <= 0 || height <= 0)
 		return (NULL);
 
-	/*add the first string to array s*/
-	for (i = 0; s1[i] != '\0'; i++)
-		s[i] = s1[i];
-	/*add the second string to array s*/
-	for (j = 0; s2[j] != '\0'; j++)
+	grid = malloc(height * sizeof(int *));
+	if (grid == NULL)
+		return (NULL);
+
+	for (i = 0; i < height; i++)
 	{
-		s[i] = s2[j];
-		i++;
+		grid[i] = malloc(width * sizeof(int));
+		if (grid[i] == NULL)
+		{
+			while (i >= 0)
+			{
+				free(grid[i]);
+				i--;
+			}
+			free(grid);
+			return (NULL);
+		}
+		for (j = 0; j < width; j++)
+			grid[i][j] = 0;
 	}
-
-	/*null terminate our new string*/
-	s[i] = '\0';
-
-	return (s);
+	return (grid);
 }
