@@ -6,13 +6,14 @@
  * @index: is the index, starting from 0 of the bit you want to set
  *
  * Done by: @Mekonen-Abera
- * Return: 1 for success, -1 for failure
+ * Return: 1 for success, -1 if fails
  */
-int clear_bit(unsigned long int *n, unsigned int index)
-{
-    if (index > 63)
-        return (-1);
 
-    *n = (~(1UL << index) & *n);
-    return (1);
+int set_bit(unsigned long int *n, unsigned int index)
+{
+	if (index > 63)
+		return (-1);
+
+	*n = ((1UL << index) | *n);
+	return (1);
 }
