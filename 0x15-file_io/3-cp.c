@@ -12,52 +12,6 @@ void close_file(int fd);
  *
  * Return: The pointer to the newly-allocated buffer
  */
-int create_file(const char *filename, char *text_content)
-{
-	int fd, w, len = 0;
-
-	if (filename == NULL)
-		return (-1);
-
-	if (text_content != NULL)
-	{
-		for (len = 0; text_content[len];)
-			len++;
-	}
-
-	fd = open(filename, O_CREAT | O_RDWR | O_TRUNC, 0600);
-	w = write(fd, text_content, len);
-
-	if (fd == -1 || w == -1)
-		return (-1);
-
-	close(fd);
-
-	return (1);
-}
-int append_text_to_file(const char *filename, char *text_content)
-{
-	int o, w, len = 0;
-
-	if (filename == NULL)
-		return (-1);
-
-	if (text_content != NULL)
-	{
-		for (len = 0; text_content[len];)
-			len++;
-	}
-
-	o = open(filename, O_WRONLY | O_APPEND);
-	w = write(o, text_content, len);
-
-	if (o == -1 || w == -1)
-		return (-1);
-
-	close(o);
-
-	return (1);
-}
 char *create_buffer(char *file)
 {
 	char *buffer;
@@ -91,8 +45,9 @@ void close_file(int fd)
 		exit(100);
 	}
 }
+
 /**
- * main - A program that copies the content of a file to another file
+ main - A program that copies the content of a file to another file
  * @argc: The number of arguments
  * @argv: An array of pointers
  *
@@ -100,8 +55,8 @@ void close_file(int fd)
  *
  * Description: If the argument count is wrong - exit code 97
  * If file_from doesn't exist or can't be read - exit code 98
- * If file_to can't be created or written to - exit code 99.
- * If file_to or file_from can't be closed - exit code 100.
+ * If file_to can't be created or written to - exit code 99
+ * If file_to or file_from can't be closed - exit code 100
  */
 int main(int argc, char *argv[])
 {

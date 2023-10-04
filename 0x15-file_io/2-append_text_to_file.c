@@ -9,49 +9,29 @@
  * Return: 1 on success
  *         Otherwise - 1.
  */
-int create_file(const char *filename, char *text_content)
-{
-	int fd, w, len = 0;
-
-	if (filename == NULL)
-		return (-1);
-
-	if (text_content != NULL)
-	{
-		for (len = 0; text_content[len];)
-			len++;
-	}
-
-	fd = open(filename, O_CREAT | O_RDWR | O_TRUNC, 0600);
-	w = write(fd, text_content, len);
-
-	if (fd == -1 || w == -1)
-		return (-1);
-
-	close(fd);
-
-	return (1);
-}
 int append_text_to_file(const char *filename, char *text_content)
 {
-	int o, w, len = 0;
+	int file, app_status, words = 0;
 
-	if (filename == NULL)
+	if (filename == NULL) /*check if file is present*/
 		return (-1);
 
-	if (text_content != NULL)
+	/*open file, with append option with write rights*/
+	file = open(filename, O_APPEND | O_WRONLY);
+	if (file == -1) /*check if file is present*/
+		return (-1);
+
+	if (text_content) /*append content to file if its not NULL*/
 	{
-		for (len = 0; text_content[len];)
-			len++;
+		while (text_content[words] != '\0') /*find number of words*/
+			words++;
+
+		/*append to file*/
+		app_status = write(file, text_content, words);
+		if (app_status == -1) /*check if append was a success*/
+			return (-1);
 	}
 
-	o = open(filename, O_WRONLY | O_APPEND);
-	w = write(o, text_content, len);
-
-	if (o == -1 || w == -1)
-		return (-1);
-
-	close(o);
-
+	close(file); /*close file*/
 	return (1);
 }
