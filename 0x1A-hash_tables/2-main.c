@@ -25,4 +25,3 @@ int main(void)
     printf("%lu\n", key_index((unsigned char *)s, hash_table_array_size));  
     return (EXIT_SUCCESS);
 }
-
