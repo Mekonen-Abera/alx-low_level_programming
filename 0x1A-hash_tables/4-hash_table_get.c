@@ -1,8 +1,8 @@
 #include "hash_tables.h"
 
 /**
- * hash_table_get -  Retrieves a value associated with a key
- * @ht: Hash table 
+ * hash_table_get - Retrieves a value associated with a key
+ * @ht: Hash table
  * @key: Key hash table
  * Done by: Mekonen Abera
  * Return: if the value works, NULL if it doesn't work
